@@ -183,10 +183,10 @@ namespace NBitcoin.Altcoins
 			}
 		}
 
-		public class BTrashPubKeyAddress : BitcoinPubKeyAddress
+		public class NEXAPubKeyAddress : BitcoinPubKeyAddress
 		{
 			NexaAddr.NexaAddr.NexaAddrData addr;
-			internal BTrashPubKeyAddress(string str, NexaAddr.NexaAddr.NexaAddrData addr) : base(str, new KeyId(addr.Hash), addr.Network)
+			internal NEXAPubKeyAddress(string str, NexaAddr.NexaAddr.NexaAddrData addr) : base(str, new KeyId(addr.Hash), addr.Network)
 			{
 				this.addr = addr;
 			}
@@ -202,10 +202,10 @@ namespace NBitcoin.Altcoins
 			}
 		}
 
-		public class BTrashScriptAddress : BitcoinScriptAddress
+		public class NEXAScriptAddress : BitcoinScriptAddress
 		{
 			NexaAddr.NexaAddr.NexaAddrData addr;
-			internal BTrashScriptAddress(string str, NexaAddr.NexaAddr.NexaAddrData addr) : base(str, new ScriptId(addr.Hash), addr.Network)
+			internal NEXAScriptAddress(string str, NexaAddr.NexaAddr.NexaAddrData addr) : base(str, new ScriptId(addr.Hash), addr.Network)
 			{
 				this.addr = addr;
 			}
@@ -233,14 +233,14 @@ namespace NBitcoin.Altcoins
 					try
 					{
 						var addr = NexaAddr.NexaAddr.DecodeAddress(str, prefix, network);
-						if (addr.Type == NexaAddr.NexaAddr.CashType.P2PKH && targetType.GetTypeInfo().IsAssignableFrom(typeof(BTrashPubKeyAddress).GetTypeInfo()))
+						if (addr.Type == NexaAddr.NexaAddr.CashType.P2PKH && targetType.GetTypeInfo().IsAssignableFrom(typeof(NEXAPubKeyAddress).GetTypeInfo()))
 						{
-							result = new BTrashPubKeyAddress(str, addr);
+							result = new NEXAPubKeyAddress(str, addr);
 							return true;
 						}
-						else if (addr.Type == NexaAddr.NexaAddr.CashType.P2SH && targetType.GetTypeInfo().IsAssignableFrom(typeof(BTrashScriptAddress).GetTypeInfo()))
+						else if (addr.Type == NexaAddr.NexaAddr.CashType.P2SH && targetType.GetTypeInfo().IsAssignableFrom(typeof(NEXAScriptAddress).GetTypeInfo()))
 						{
-							result = new BTrashScriptAddress(str, addr);
+							result = new NEXAScriptAddress(str, addr);
 							return true;
 						}
 					}
@@ -260,7 +260,7 @@ namespace NBitcoin.Altcoins
 					Network = network
 				};
 				var str = NexaAddr.NexaAddr.EncodeAsCashaddr(addr);
-				return new BTrashPubKeyAddress(str, addr);
+				return new NEXAPubKeyAddress(str, addr);
 			}
 			public override BitcoinScriptAddress CreateP2SH(ScriptId scriptId, Network network)
 			{
@@ -273,7 +273,7 @@ namespace NBitcoin.Altcoins
 					Network = network
 				};
 				var str = NexaAddr.NexaAddr.EncodeAsCashaddr(addr);
-				return new BTrashScriptAddress(str, addr);
+				return new NEXAScriptAddress(str, addr);
 			}
 		}
 
