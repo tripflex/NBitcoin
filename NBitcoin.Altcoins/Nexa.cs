@@ -295,7 +295,7 @@ namespace NBitcoin.Altcoins
 				PowLimit = new Target(new uint256("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff")),
 				PowTargetTimespan = TimeSpan.FromSeconds(14 * 24 * 60 * 60),
 				PowTargetSpacing = TimeSpan.FromSeconds(2 * 60),
-				PowAllowMinDifficultyBlocks = true,
+				PowAllowMinDifficultyBlocks = false,
 				PowNoRetargeting = false,
 				RuleChangeActivationThreshold = 1916,
 				MinerConfirmationWindow = 2016,
@@ -315,9 +315,9 @@ namespace NBitcoin.Altcoins
 			.SetBase58Bytes(Base58Type.EXT_SECRET_KEY, new byte[] { 0x42, 0x6c, 0x6b, 0x73 })
 			.SetBech32(Bech32Type.WITNESS_PUBKEY_ADDRESS, Encoders.Bech32("nexa"))
 			.SetBech32(Bech32Type.WITNESS_SCRIPT_ADDRESS, Encoders.Bech32("nexa"))
-			.SetMagic(0xe8f3e1e3)
+			.SetMagic(0x72271221)
 			.SetPort(7228)
-			.SetRPCPort(8332)
+			.SetRPCPort(7227)
 			.SetNetworkStringParser(new NexaStringParser("nexa"))
 			.SetName("nexa")
 			.AddAlias("nexa-mainnet")
